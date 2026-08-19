@@ -34,6 +34,7 @@ Read these before testing:
 
 - [Physical connection](docs/HARDWARE.md)
 - [Apple entitlement and signing setup](docs/APPLE_ENTITLEMENTS.md)
+- [How to apply for Apple DriverKit entitlements](docs/DRIVERKIT_APPLICATION_GUIDE.md)
 - [First hardware test plan](docs/TEST_PLAN.md)
 - [Protocol details and sources](docs/PROTOCOL_NOTES.md)
 
