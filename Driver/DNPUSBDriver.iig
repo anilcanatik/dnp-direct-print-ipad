@@ -1,0 +1,27 @@
+#ifndef DNPUSBDriver_h
+#define DNPUSBDriver_h
+
+#include <DriverKit/IOService.iig>
+#include <DriverKit/IOUserClient.iig>
+#include <USBDriverKit/IOUSBHostInterface.iig>
+#include <USBDriverKit/IOUSBHostPipe.iig>
+
+class DNPUSBDriver : public IOService
+{
+public:
+    virtual bool init() override;
+    virtual void free() override;
+    virtual kern_return_t Start(IOService *provider) override;
+    virtual kern_return_t Stop(IOService *provider) override;
+    virtual kern_return_t NewUserClient(uint32_t type, IOUserClient **userClient) override;
+
+    kern_return_t WriteBytes(const uint8_t *bytes, uint32_t length) LOCALONLY;
+    kern_return_t Transact(const uint8_t *request,
+                           uint32_t requestLength,
+                           uint8_t *response,
+                           uint32_t responseCapacity,
+                           uint32_t *responseLength) LOCALONLY;
+};
+
+#endif /* DNPUSBDriver_h */
+

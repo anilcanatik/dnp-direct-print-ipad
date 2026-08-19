@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(MARKETING_VERSION)</string>
+    <key>CFBundleVersion</key>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
+    <key>IOKitPersonalities</key>
+    <dict>
+        <key>DNP DS-RX1HS</key>
+        <dict>
+            <key>CFBundleIdentifier</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+            <key>CFBundleIdentifierKernel</key>
+            <string>com.apple.kpi.iokit</string>
+            <key>IOClass</key>
+            <string>IOUserService</string>
+            <key>IOMatchCategory</key>
+            <string>com.example.dnpdirectprint</string>
+            <key>IOProviderClass</key>
+            <string>IOUSBHostInterface</string>
+            <key>IOUserClass</key>
+            <string>DNPUSBDriver</string>
+            <key>IOUserServerName</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+            <key>idVendor</key>
+            <integer>4931</integer>
+            <key>idProduct</key>
+            <integer>5</integer>
+            <key>bConfigurationValue</key>
+            <integer>1</integer>
+            <key>bInterfaceNumber</key>
+            <integer>0</integer>
+            <key>UserClientProperties</key>
+            <dict>
+                <key>IOClass</key>
+                <string>IOUserUserClient</string>
+                <key>IOUserClass</key>
+                <string>DNPUSBUserClient</string>
+            </dict>
+        </dict>
+        <key>DNP QW410</key>
+        <dict>
+            <key>CFBundleIdentifier</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+            <key>CFBundleIdentifierKernel</key>
+            <string>com.apple.kpi.iokit</string>
+            <key>IOClass</key>
+            <string>IOUserService</string>
+            <key>IOMatchCategory</key>
+            <string>com.example.dnpdirectprint</string>
+            <key>IOProviderClass</key>
+            <string>IOUSBHostInterface</string>
+            <key>IOUserClass</key>
+            <string>DNPUSBDriver</string>
+            <key>IOUserServerName</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+            <key>idVendor</key>
+            <integer>5202</integer>
+            <key>idProduct</key>
+            <integer>37377</integer>
+            <key>bConfigurationValue</key>
+            <integer>1</integer>
+            <key>bInterfaceNumber</key>
+            <integer>0</integer>
+            <key>UserClientProperties</key>
+            <dict>
+                <key>IOClass</key>
+                <string>IOUserUserClient</string>
+                <key>IOUserClass</key>
+                <string>DNPUSBUserClient</string>
+            </dict>
+        </dict>
+    </dict>
+    <key>OSBundleUsageDescription</key>
+    <string>Communicates with supported DNP photo printers over USB.</string>
+</dict>
+</plist>
+

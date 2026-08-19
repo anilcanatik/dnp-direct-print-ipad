@@ -1,0 +1,23 @@
+name: Build core
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  core-tests:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate project
+        run: xcodegen generate
+      - name: Test protocol and raster job builder
+        run: >-
+          xcodebuild test
+          -project DNPDirectPrint.xcodeproj
+          -scheme DNPPrintCoreTests
+          -destination 'platform=iOS Simulator,name=iPad Pro 11-inch (M4),OS=latest'
+          CODE_SIGNING_ALLOWED=NO
+

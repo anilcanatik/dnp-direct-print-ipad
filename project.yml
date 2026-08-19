@@ -1,0 +1,110 @@
+name: DNPDirectPrint
+
+options:
+  minimumXcodeGenVersion: 2.46.0
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 0.1.0
+    SWIFT_VERSION: 5.0
+
+targets:
+  DNPPrintCore:
+    type: framework
+    platform: iOS
+    sources:
+      - Core
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.dnpdirectprint.core
+        GENERATE_INFOPLIST_FILE: YES
+        SKIP_INSTALL: YES
+    dependencies:
+      - sdk: CoreGraphics.framework
+      - sdk: UIKit.framework
+
+  DNPUSBDriver:
+    type: driver-extension
+    platform: macOS
+    sources:
+      - Driver
+      - path: Shared
+        buildPhase: none
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.dnpdirectprint.driver
+        PRODUCT_NAME: com.example.dnpdirectprint.driver
+        SDKROOT: driverkit
+        DRIVERKIT_DEPLOYMENT_TARGET: 22.0
+        INFOPLIST_FILE: Driver/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Driver/Driver.entitlements
+        CODE_SIGN_STYLE: Automatic
+        SKIP_INSTALL: YES
+        CLANG_CXX_LANGUAGE_STANDARD: gnu++17
+        HEADER_SEARCH_PATHS: "$(SRCROOT)/Shared"
+        RUN_CLANG_STATIC_ANALYZER: YES
+    dependencies:
+      - sdk: DriverKit.framework
+      - sdk: USBDriverKit.framework
+
+  DNPDirectPrint:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - App
+      - path: Shared
+        buildPhase: none
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.dnpdirectprint
+        PRODUCT_NAME: DNP Direct Print
+        INFOPLIST_FILE: App/Info.plist
+        CODE_SIGN_ENTITLEMENTS: App/App.entitlements
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: 2
+        SUPPORTS_MACCATALYST: NO
+        SWIFT_OBJC_BRIDGING_HEADER: App/BridgingHeader.h
+        HEADER_SEARCH_PATHS: "$(SRCROOT)/Shared"
+    dependencies:
+      - target: DNPPrintCore
+      - target: DNPUSBDriver
+        embed: true
+        codeSign: true
+        link: false
+      - sdk: IOKit.framework
+
+  DNPPrintCoreTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - Tests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.dnpdirectprint.core-tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: DNPPrintCore
+
+schemes:
+  DNPDirectPrint:
+    build:
+      targets:
+        DNPDirectPrint: all
+        DNPUSBDriver: all
+    run:
+      config: Debug
+
+  DNPPrintCoreTests:
+    build:
+      targets:
+        DNPPrintCore: all
+        DNPPrintCoreTests: [test]
+    test:
+      targets:
+        - DNPPrintCoreTests
