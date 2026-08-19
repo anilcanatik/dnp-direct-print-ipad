@@ -25,5 +25,5 @@ jobs:
           xcodebuild test
           -project DNPDirectPrint.xcodeproj
           -scheme DNPPrintCoreTests
-          -destination 'platform=iOS Simulator,name=iPad Pro 11-inch (M4),OS=latest'
+          -destination 'platform=macOS,variant=Mac Catalyst'
           CODE_SIGNING_ALLOWED=NO
