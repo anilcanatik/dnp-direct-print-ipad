@@ -28,7 +28,10 @@ static kern_return_t DNPMapInput(IOUserClientMethodArguments *arguments,
         kern_return_t result = arguments->structureInputDescriptor->CreateMapping(0, 0, 0, 0, 0, mapping);
         if (result != kIOReturnSuccess || *mapping == nullptr) return result;
         *bytes = reinterpret_cast<const uint8_t *>((*mapping)->GetAddress());
-        *length = arguments->structureInputDescriptor->GetLength();
+        uint64_t descriptorLength = 0;
+        result = arguments->structureInputDescriptor->GetLength(&descriptorLength);
+        if (result != kIOReturnSuccess) return result;
+        *length = descriptorLength;
         return *bytes == nullptr ? kIOReturnBadArgument : kIOReturnSuccess;
     }
     return kIOReturnBadArgument;
@@ -115,4 +118,3 @@ exit:
     OSSafeReleaseNULL(inputMapping);
     return result;
 }
-
