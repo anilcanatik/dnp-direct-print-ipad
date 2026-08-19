@@ -22,12 +22,13 @@ buffers, and streams one test copy over USB.
 
 ## Current status
 
-This is source-complete for the first hardware experiment, but it has not been
-built with Xcode or tested on a physical iPad/printer from this Windows
-workspace. It also cannot run until your Apple Developer team receives the
-required DriverKit USB entitlements. The code uses a public, independently
-reimplemented DNP command path; it does not include DNP's official color
-profiles, so first-print color is experimental.
+This is source-complete for the first hardware experiment. GitHub Actions
+generates the project, compiles the unsigned iPad app and DriverKit extension
+with Xcode 16.4, and runs the protocol/job tests. It has not yet been signed,
+installed, or tested on a physical iPad/printer. It cannot run until your Apple
+Developer team receives the required DriverKit USB entitlements. The code uses
+a public, independently reimplemented DNP command path; it does not include
+DNP's official color profiles, so first-print color is experimental.
 
 Read these before testing:
 
@@ -67,4 +68,3 @@ add cancellation/recovery, and soak-test repeated event printing.
 
 Licensed under MIT. See [NOTICE.md](NOTICE.md) for attribution and trademark
 notices.
-
