@@ -13,6 +13,13 @@ jobs:
         run: brew install xcodegen
       - name: Generate project
         run: xcodegen generate
+      - name: Build app and DriverKit extension
+        run: >-
+          xcodebuild build
+          -project DNPDirectPrint.xcodeproj
+          -scheme DNPDirectPrint
+          -destination 'generic/platform=iOS'
+          CODE_SIGNING_ALLOWED=NO
       - name: Test protocol and raster job builder
         run: >-
           xcodebuild test
@@ -20,4 +27,3 @@ jobs:
           -scheme DNPPrintCoreTests
           -destination 'platform=iOS Simulator,name=iPad Pro 11-inch (M4),OS=latest'
           CODE_SIGNING_ALLOWED=NO
-
