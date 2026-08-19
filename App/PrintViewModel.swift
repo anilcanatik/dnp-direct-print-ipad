@@ -58,7 +58,7 @@ final class PrintViewModel: ObservableObject {
         let finish = finish
         isWorking = true
         progress = 0
-        status = "Preparing \(preset.rawValue) raster…"
+        status = "Preparing \(preset.displayName) raster…"
 
         Task {
             do {

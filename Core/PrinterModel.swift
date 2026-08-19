@@ -18,13 +18,28 @@ public enum DNPPrinterModel: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-public enum DNPPrintPreset: String, CaseIterable, Identifiable, Sendable {
-    case rx1hs4x6 = "4 × 6 in"
-    case rx1hs6x8 = "6 × 8 in"
-    case qw4104x6 = "4 × 6 in"
-    case qw4104_5x8 = "4.5 × 8 in"
+public enum DNPPrintPreset: CaseIterable, Identifiable, Sendable {
+    case rx1hs4x6
+    case rx1hs6x8
+    case qw4104x6
+    case qw4104_5x8
 
-    public var id: String { "\(model.rawValue)-\(rawValue)" }
+    public var id: String {
+        switch self {
+        case .rx1hs4x6: return "rx1hs-4x6"
+        case .rx1hs6x8: return "rx1hs-6x8"
+        case .qw4104x6: return "qw410-4x6"
+        case .qw4104_5x8: return "qw410-4.5x8"
+        }
+    }
+
+    public var displayName: String {
+        switch self {
+        case .rx1hs4x6, .qw4104x6: return "4 × 6 in"
+        case .rx1hs6x8: return "6 × 8 in"
+        case .qw4104_5x8: return "4.5 × 8 in"
+        }
+    }
 
     public var model: DNPPrinterModel {
         switch self {

@@ -13,7 +13,7 @@ struct ContentView: View {
                         ForEach(DNPPrinterModel.allCases) { Text($0.rawValue).tag($0) }
                     }
                     Picker("Print size", selection: $viewModel.selectedPreset) {
-                        ForEach(viewModel.selectedModel.presets) { Text($0.rawValue).tag($0) }
+                        ForEach(viewModel.selectedModel.presets) { Text($0.displayName).tag($0) }
                     }
                     Picker("Finish", selection: $viewModel.finish) {
                         ForEach(DNPFinish.allCases) { Text($0.rawValue).tag($0) }
